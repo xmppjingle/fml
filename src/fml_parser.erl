@@ -404,7 +404,7 @@ yeccpars2_5_(__Stack0) ->
 yeccpars2_7_(__Stack0) ->
  [__1 | __Stack] = __Stack0,
  [begin
-   { unamed , extract_token ( __1 ) }
+   { unnamed , extract_token ( __1 ) }
   end | __Stack].
 
 -compile({inline,yeccpars2_9_/1}).

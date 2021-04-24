@@ -9,7 +9,7 @@ defmodule FML do
   ## Examples
 
     iex> a = "t(a='c','d'){ b(p1='d', p2 = 'c').onConnect()  }"
-    iex> v = {:function, 't', [{'a', 'c'}, {:unamed, 'd'}], [ {:function, 'b', [{'p1', 'd'}, {'p2', 'c'}], [{:function, 'onConnect', [], []}]} ]}
+    iex> v = {:function, 't', [{'a', 'c'}, {:unnamed, 'd'}], [ {:function, 'b', [{'p1', 'd'}, {'p2', 'c'}], [{:function, 'onConnect', [], []}]} ]}
     iex> v === FML.parse(a)
     true
 

@@ -8,7 +8,7 @@ body -> '{' funs '}' : '$2' .
 body -> '.' funs : '$2' .
 body -> '$empty' : [] .
 
-param -> str : {'unamed', extract_token('$1') }.
+param -> str : {'unnamed', extract_token('$1') }.
 param -> atom '=' str : {extract_token('$1'), extract_token('$3')}.
 
 params -> '$empty' : [].

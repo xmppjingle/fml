@@ -6,7 +6,7 @@ defmodule FMLTest do
     
   	a = "t(a='c','d'){ b(p1='d', p2 = 'c').onConnect()  }"
 
-  	v = {:function, 't', [{'a', 'c'}, {:unamed, 'd'}],
+  	v = {:function, 't', [{'a', 'c'}, {:unnamed, 'd'}],
 			 [
 			   {:function, 'b', [{'p1', 'd'}, {'p2', 'c'}],
 			    	[{:function, 'onConnect', [], []}]}
