@@ -4,12 +4,14 @@ defmodule FML do
   """
 
   @doc """
-  Hello world.
+  Basic Parsing.
 
   ## Examples
 
-      iex> FML.parse("test(a='b')")
-      :world
+    iex> a = "t(a='c','d'){ b(p1='d', p2 = 'c').onConnect()  }"
+    iex> v = {:function, 't', [{'a', 'c'}, {:unamed, 'd'}], [ {:function, 'b', [{'p1', 'd'}, {'p2', 'c'}], [{:function, 'onConnect', [], []}]} ]}
+    iex> v === FML.parse(a)
+    true
 
   """
   def parse(str) do
