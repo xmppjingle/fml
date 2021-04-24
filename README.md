@@ -16,6 +16,7 @@ Structure is defined as:
 	expression(a = '2', b = '3').operate()
 		.onResult('5'){ print('sum') }
 		.onResult('6'){ print('multiply') }
+		.onResult(res){ print(res) }
 	
 ```
 
