@@ -40,6 +40,7 @@ params -> params ',' param : '$1' ++ ['$3'] .
 funs -> '$empty' : [].
 funs -> fun : ['$1'] .
 funs -> funs '.' fun : '$1' ++ ['$3'] .
+funs -> funs fun : '$1' ++ ['$2'] .
 
 Erlang code.
 

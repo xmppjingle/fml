@@ -1,0 +1,6 @@
+%{
+  "dep_from_hexpm": {:hex, :dep_from_hexpm, "0.3.0", "e820a753364b715e84457836317107c340d3bdcaa21b469272da79f29ef5f5cb", [:mix], [], "hexpm", "55b0c9db6c5666a4358e1d8e799f43f3fa091ef036dc0d09bf5ee9f091f07b6d"},
+  "fast_xml": {:hex, :fast_xml, "1.1.46", "bd563e1cdd8a397ed31a6e11f832ea9e4e90f84695104aa92b46224a887fc6ae", [:rebar3], [{:p1_utils, "1.0.22", [hex: :p1_utils, repo: "hexpm", optional: false]}], "hexpm", "2992a0b2fb649879936fd72498e8bf4202e4cc8356295e14ddf17d4220ac8c51"},
+  "p1_utils": {:hex, :p1_utils, "1.0.22", "10a70faa665d1f8f6995fa100d068b4d910ee2a0111fa3567e9d6232cbb86f21", [:rebar3], [], "hexpm", "0e49ff5586515e3c44901d6fb06b1473bda492d749f0b1705cbf9d96d4cd5a38"},
+  "saxy": {:hex, :saxy, "1.3.0", "61b52697a3235be68ce6f8ecc2c7032f3c01184b14d142a7d09270019e32fbf9", [:mix], [], "hexpm", "c9770a08c168be95c8d8249a9051dd5522641941ec1d9cb843e7d12dc101b6d2"},
+}

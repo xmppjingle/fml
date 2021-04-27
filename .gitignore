@@ -9,3 +9,5 @@ erl_crash.dump
 /config/*.secret.exs
 .DS_Store
 .elixir_ls/
+/src/fml_parser.erl
+/src/fml_lexer.erl
