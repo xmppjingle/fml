@@ -18,7 +18,7 @@ defmodule FML_SaxyTest do
     	.onResult(res){ print(res) }
     """
 
-    v = "<expression a=\"2\" b=\"3\"><operate><onResult unnamed=\"5\"><print unnamed=\"sum\"/></onResult><onResult unnamed=\"6\"><print unnamed=\"multiply\"/></onResult><onResult _res=\"{{res}}\"><print _res=\"{{res}}\"/></onResult></operate></expression>"
+    v = "<expression a=\"2\" b=\"3\"><operate><onResult unnamed=\"5\"><print unnamed=\"sum\"/></onResult><onResult unnamed=\"6\"><print unnamed=\"multiply\"/></onResult><onResult _res=\"res\"><print _res=\"res\"/></onResult></operate></expression>"
 
     assert FML_Saxy.to_xml(b) == v
   end
@@ -27,7 +27,7 @@ defmodule FML_SaxyTest do
     b = """
       dial(a){ onConnect(){ record(){ stream(x){ onComplete(c) } onComplete(link){ play(url = "http://") }}}}
       """
-    v = "<dial _a=\"{{a}}\"><onConnect><record><stream _x=\"{{x}}\"><onComplete _c=\"{{c}}\"/></stream><onComplete _link=\"{{link}}\"><play url=\"http://\"/></onComplete></record></onConnect></dial>"
+    v = "<dial _a=\"a\"><onConnect><record><stream _x=\"x\"><onComplete _c=\"c\"/></stream><onComplete _link=\"link\"><play url=\"http://\"/></onComplete></record></onConnect></dial>"
 
     assert FML_Saxy.to_xml(b) == v
   end
