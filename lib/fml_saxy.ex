@@ -14,22 +14,26 @@ defmodule FML_Saxy do
 
     iex> a = "t(a='c','d'){ b(p1='d', p2 = 'c').onConnect(code= '200', reason=Reason)  }"
     iex> FML_Saxy.to_xml(a)
-    "<t a=\\"c\\" unnamed=\\"d\\"><b p1=\\"d\\" p2=\\"c\\"><onConnect code=\\"200\\" _reason=\\"Reason\\"/></b></t>"
+    "<script><t a=\\"c\\" unnamed=\\"d\\"><b p1=\\"d\\" p2=\\"c\\"><onConnect code=\\"200\\" _reason=\\"Reason\\"/></b></t></script>"
 
     iex> a = "t(a='c','d'){ b(p1='d', p2 = 'c').onConnect(code= '200', reason)  }"
     iex> FML_Saxy.to_xml(a)
-    "<t a=\\"c\\" unnamed=\\"d\\"><b p1=\\"d\\" p2=\\"c\\"><onConnect code=\\"200\\" _reason=\\"reason\\"/></b></t>"
+    "<script><t a=\\"c\\" unnamed=\\"d\\"><b p1=\\"d\\" p2=\\"c\\"><onConnect code=\\"200\\" _reason=\\"reason\\"/></b></t></script>"
 
   """
   
   def to_xml(str) do
     Saxy.encode!(
-      nav(FML.parse(str))
+      element("script", [], ( for e <- FML.parse(str), do: nav(e) ))
       )
   end
 
   def nav({:function, name, attrs, children}) do
     element( (to_string(name)), (norm_attrs(attrs)), (for e <- children, do: nav(e) ) )
+  end
+
+  def nav({:declare, name, attrs, children}) do
+    element( "snippet", [ {"id", to_string(name)} | (norm_attrs(attrs))], (for e <- children, do: nav(e) ) )
   end
 
   def norm_attrs([]) do

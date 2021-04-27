@@ -18,14 +18,21 @@
 %% %CopyrightEnd%
 %%
 
-Nonterminals params param fun funs body.
-Terminals ',' '(' ')' '{' '}' '.' '=' str atom.
-Rootsymbol fun.
+Nonterminals params param call calls body declare script.
+Terminals ',' '(' ')' '{' '}' '.' '=' str atom fun.
+Rootsymbol script.
 
-fun -> atom '(' params ')' body  : {function, extract_token('$1'), '$3', '$5'} .
+script -> call : ['$1'] .
+script -> declare : ['$1'] .
+script -> script call : '$1' ++ ['$2'] .
+script -> script declare : '$1' ++ ['$2'] .
 
-body -> '{' funs '}' : '$2' .
-body -> '.' funs : '$2' .
+declare -> fun atom '(' params ')' body  : {declare, extract_token('$2'), '$4', '$6'} .
+
+call -> atom '(' params ')' body  : {function, extract_token('$1'), '$3', '$5'} .
+
+body -> '{' calls '}' : '$2' .
+body -> '.' calls : '$2' .
 body -> '$empty' : [] .
 
 param -> str : {'unnamed', extract_token('$1') }.
@@ -37,10 +44,10 @@ params -> '$empty' : [].
 params -> param : ['$1'] .
 params -> params ',' param : '$1' ++ ['$3'] .
 
-funs -> '$empty' : [].
-funs -> fun : ['$1'] .
-funs -> funs '.' fun : '$1' ++ ['$3'] .
-funs -> funs fun : '$1' ++ ['$2'] .
+calls -> '$empty' : [].
+calls -> call : ['$1'] .
+calls -> calls '.' call : '$1' ++ ['$3'] .
+calls -> calls call : '$1' ++ ['$2'] .
 
 Erlang code.
 

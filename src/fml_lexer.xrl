@@ -25,6 +25,7 @@ WHITESPACE 		= [\s\t\n\r]
 
 Rules.
 
+fun				: {token, {'fun',	TokenLine}}.
 {ALPHAN}		: name_alphan(TokenChars, TokenLine).
 \[            	: {token, {'[',  	TokenLine}}.
 \]            	: {token, {']',  	TokenLine}}.

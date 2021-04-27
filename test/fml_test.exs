@@ -6,10 +6,10 @@ defmodule FMLTest do
     a = "t(a='c','d'){ b(p1='d', p2 = 'c').onConnect()  }"
 
     v =
-      {:function, 't', [{'a', 'c'}, {:unnamed, 'd'}],
+      [{:function, 't', [{'a', 'c'}, {:unnamed, 'd'}],
        [
          {:function, 'b', [{'p1', 'd'}, {'p2', 'c'}], [{:function, 'onConnect', [], []}]}
-       ]}
+       ]}]
 
     assert FML.parse(a) == v
   end
@@ -23,7 +23,7 @@ defmodule FMLTest do
     """
 
     v =
-      {:function, 'expression', [{'a', '2'}, {'b', '3'}],
+      [{:function, 'expression', [{'a', '2'}, {'b', '3'}],
        [
          {:function, 'operate', [],
           [
@@ -33,7 +33,7 @@ defmodule FMLTest do
             {:function, 'onResult', [unnamed: {:bind, 'res'}],
              [{:function, 'print', [unnamed: {:bind, 'res'}], []}]}
           ]}
-       ]}
+       ]}]
 
     assert FML.parse(b) == v
   end
