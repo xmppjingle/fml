@@ -20,6 +20,22 @@ defmodule FML_Saxy do
     iex> FML_Saxy.to_xml(a)
     "<script><t a=\\"c\\" unnamed=\\"d\\"><b p1=\\"d\\" p2=\\"c\\"><onConnect code=\\"200\\" _reason=\\"reason\\"/></b></t></script>"
 
+    iex> a = "body(){ t(a='c','d'){ b(p1='d', p2 = 'c').onConnect(code= '200', reason)  } a() }"
+    iex> FML_Saxy.to_xml(a)
+    "<script><body><t a=\\"c\\" unnamed=\\"d\\"><b p1=\\"d\\" p2=\\"c\\"><onConnect code=\\"200\\" _reason=\\"reason\\"/></b></t><a/></body></script>"
+
+    iex> a = "body(){ fun t(a='c','d'){ b(p1='d', p2 = 'c').onConnect(code= '200', reason)  } a() }"
+    iex> FML_Saxy.to_xml(a)
+    "<script><body><snippet id=\\"t\\" a=\\"c\\" unnamed=\\"d\\"><b p1=\\"d\\" p2=\\"c\\"><onConnect code=\\"200\\" _reason=\\"reason\\"/></b></snippet><a/></body></script>"
+
+    iex> a = "fun body(){ fun t(a='c','d'){ b(p1='d', p2 = 'c').onConnect(code= '200', reason)  } a() }"
+    iex> FML_Saxy.to_xml(a)
+    "<script><snippet id=\\"body\\"><snippet id=\\"t\\" a=\\"c\\" unnamed=\\"d\\"><b p1=\\"d\\" p2=\\"c\\"><onConnect code=\\"200\\" _reason=\\"reason\\"/></b></snippet><a/></snippet></script>"
+
+    iex> a = "fun body(){ fun t(a='c','d'){ b(p1='d', p2 = 'c').onConnect(code= '200', reason)  } fun a(){ fun b(){} fun c(){} d() } }"
+    iex> FML_Saxy.to_xml(a)
+    "<script><snippet id=\\"body\\"><snippet id=\\"t\\" a=\\"c\\" unnamed=\\"d\\"><b p1=\\"d\\" p2=\\"c\\"><onConnect code=\\"200\\" _reason=\\"reason\\"/></b></snippet><snippet id=\\"a\\"><snippet id=\\"b\\"/><snippet id=\\"c\\"/><d/></snippet></snippet></script>"
+
   """
   
   def to_xml(str) do

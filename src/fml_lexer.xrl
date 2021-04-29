@@ -20,7 +20,7 @@
 
 Definitions.
 
-ALPHAN	       	= [a-zA-Z0-9]+
+ALPHAN	       	= [a-zA-Z0-9-]+
 WHITESPACE 		= [\s\t\n\r]
 
 Rules.

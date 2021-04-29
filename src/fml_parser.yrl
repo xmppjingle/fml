@@ -48,6 +48,7 @@ calls -> '$empty' : [].
 calls -> call : ['$1'] .
 calls -> calls '.' call : '$1' ++ ['$3'] .
 calls -> calls call : '$1' ++ ['$2'] .
+calls -> calls declare : '$1' ++ ['$2'] .
 
 Erlang code.
 
