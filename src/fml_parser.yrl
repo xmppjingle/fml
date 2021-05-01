@@ -18,7 +18,7 @@
 %% %CopyrightEnd%
 %%
 
-Nonterminals params param call calls body declare script.
+Nonterminals params param call calls body declare script assign.
 Terminals ',' '(' ')' '{' '}' '.' '=' str atom fun.
 Rootsymbol script.
 
@@ -28,6 +28,8 @@ script -> script call : '$1' ++ ['$2'] .
 script -> script declare : '$1' ++ ['$2'] .
 
 declare -> fun atom '(' params ')' body  : {declare, extract_token('$2'), '$4', '$6'} .
+declare -> atom '=' str : {assign, extract_token('$1'), '$3'} .
+declare -> atom '=' atom : {assign, extract_token('$1'), {bind, extract_token('$3') }} .
 
 call -> atom '(' params ')' body  : {function, extract_token('$1'), '$3', '$5'} .
 
